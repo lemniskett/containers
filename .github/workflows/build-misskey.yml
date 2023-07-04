@@ -46,6 +46,7 @@ jobs:
             ghcr.io/lemniskett/misskey:${{ steps.date.outputs.date }}
 
   deploy:
+    needs: build
     runs-on: ubuntu-latest
     steps:
       - name: Get deployment scripts
