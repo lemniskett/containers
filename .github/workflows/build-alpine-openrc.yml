@@ -42,3 +42,20 @@ jobs:
           tags: |
             ghcr.io/lemniskett/alpine:latest
             ghcr.io/lemniskett/alpine:${{ steps.date.outputs.date }}
+
+  deploy:
+    runs-on: ubuntu-latest
+    steps:
+      - name: Get deployment scripts
+        uses: actions/checkout@v3
+        with:
+          repository: lemniskett/rancher-api-scripts
+          
+      - name: Execute redeploy.py
+        run: python3 ./redeploy.py misskey
+        env:
+          RANCHER_URL: ${{ secrets.RANCHER_URL }}
+          RANCHER_CLUSTER: ${{ secrets.RANCHER_CLUSTER }}
+          RANCHER_NAMESPACE: ${{ secrets.RANCHER_NAMESPACE }}
+          RANCHER_ACCESS_KEY: ${{ secrets.RANCHER_ACCESS_KEY }}
+          RANCHER_SECRET_KEY: ${{ secrets.RANCHER_SECRET_KEY }}
