@@ -10,6 +10,10 @@ jobs:
   build:
     runs-on: ubuntu-latest
     steps:
+      - name: Generate date string
+        id: date
+        run: echo "date=$(date +'%y%m%d')" >> $GITHUB_OUTPUT
+
       - name: Checkout Misskey source to ./misskey
         uses: actions/checkout@v3
         with:
@@ -37,3 +41,4 @@ jobs:
           push: true
           tags: |
             ghcr.io/lemniskett/misskey:latest
+            ghcr.io/lemniskett/misskey:${{ steps.date.outputs.date }}

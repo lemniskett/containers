@@ -13,6 +13,10 @@ jobs:
   build:
     runs-on: ubuntu-latest
     steps:
+      - name: Generate date string
+        id: date
+        run: echo "date=$(date +'%y%m%d')" >> $GITHUB_OUTPUT
+
       - name: Checkout repo
         uses: actions/checkout@v3
 
@@ -37,3 +41,4 @@ jobs:
           push: true
           tags: |
             ghcr.io/lemniskett/openvpn:latest
+            ghcr.io/lemniskett/openvpn:${{ steps.date.outputs.date }}
