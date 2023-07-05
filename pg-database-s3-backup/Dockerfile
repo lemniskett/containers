@@ -1,5 +1,5 @@
 FROM python:3.11-alpine
-RUN apk add --no-cache postgresql-client
+RUN apk add --no-cache postgresql-client zstd
 COPY requirements.txt /app/requirements.txt
 WORKDIR /app
 RUN pip install -r requirements.txt
