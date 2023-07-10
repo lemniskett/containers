@@ -2,14 +2,16 @@ name: Build Soapbox
 
 on:
   push:
-    branches: 
-      - master
+    # branches: 
+    #   - master
   workflow_dispatch:
-  schedule:
-    - cron: '0 19 * * *'
+  # schedule:
+  #   - cron: '0 19 * * *'
 
 jobs:
   build:
+    env: 
+      PLEROMA_TAG: v2.5.2
     runs-on: ubuntu-latest
     steps:
       - name: Generate date string
@@ -20,7 +22,7 @@ jobs:
         uses: actions/checkout@v3
 
       - name: Checkout Pleroma source to ./pleroma
-        run: git clone https://git.pleroma.social/pleroma/pleroma.git --depth 1 --branch develop pleroma
+        run: git clone https://git.pleroma.social/pleroma/pleroma.git --branch ${{ env.PLEROMA_TAG }} --depth 1
 
       - name: Extend Pleroma Dockerfile
         run: cat >> ./pleroma/Dockerfile < ./soapbox/Dockerfile.extend
