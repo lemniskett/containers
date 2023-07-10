@@ -16,8 +16,14 @@ jobs:
         id: date
         run: echo "date=$(date +'%y%m%d')" >> $GITHUB_OUTPUT
 
+      - name: Checkout repo
+        uses: actions/checkout@v3
+
       - name: Checkout Rebased source to ./rebased
         run: git clone https://gitlab.com/soapbox-pub/rebased.git --depth 1 --branch develop rebased
+
+      - name: Extend Rebased Dockerfile
+        run: cat >> ./rebased/Dockerfile < ./soapbox/Dockerfile.extend
 
       - name: Set up QEMU
         uses: docker/setup-qemu-action@v2
