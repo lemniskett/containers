@@ -1,6 +1,6 @@
 
 USER root
-RUN apk install -y unzip
+RUN apk install unzip
 USER pleroma
 RUN set -ex; \
     wget "https://gitlab.com/soapbox-pub/soapbox/-/jobs/artifacts/develop/download?job=build-production" -O /tmp/soapbox.zip; \
