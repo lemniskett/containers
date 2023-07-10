@@ -1,8 +1,8 @@
 
 USER root
-RUN apt install -y unzip
+RUN apk install -y unzip
 USER pleroma
 RUN set -ex; \
-    curl -L "https://gitlab.com/soapbox-pub/soapbox/-/jobs/artifacts/develop/download?job=build-production" -o /tmp/soapbox.zip; \
+    wget "https://gitlab.com/soapbox-pub/soapbox/-/jobs/artifacts/develop/download?job=build-production" -O /tmp/soapbox.zip; \
     unzip /tmp/soapbox.zip -d /opt/pleroma/instance; \
     rm /tmp/soapbox.zip

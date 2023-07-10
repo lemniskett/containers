@@ -19,11 +19,11 @@ jobs:
       - name: Checkout repo
         uses: actions/checkout@v3
 
-      - name: Checkout Rebased source to ./rebased
-        run: git clone https://gitlab.com/soapbox-pub/rebased.git --depth 1 --branch develop rebased
+      - name: Checkout Pleroma source to ./pleroma
+        run: git clone https://git.pleroma.social/pleroma/pleroma.git --depth 1 --branch develop pleroma
 
-      - name: Extend Rebased Dockerfile
-        run: cat >> ./rebased/Dockerfile < ./soapbox/Dockerfile.extend
+      - name: Extend Pleroma Dockerfile
+        run: cat >> ./pleroma/Dockerfile < ./soapbox/Dockerfile.extend
 
       - name: Set up QEMU
         uses: docker/setup-qemu-action@v2
@@ -41,7 +41,7 @@ jobs:
       - name: Build and push
         uses: docker/build-push-action@v2
         with:
-          context: rebased/
+          context: pleroma/
           platforms: linux/amd64,linux/arm64
           push: true
           tags: |
