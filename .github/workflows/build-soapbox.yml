@@ -21,12 +21,6 @@ jobs:
       - name: Checkout repo
         uses: actions/checkout@v3
 
-      - name: Checkout Pleroma source to ./pleroma
-        run: git clone https://git.pleroma.social/pleroma/pleroma.git --branch ${{ env.PLEROMA_TAG }} --depth 1
-
-      - name: Extend Pleroma Dockerfile
-        run: cat >> ./pleroma/Dockerfile < ./soapbox/Dockerfile.extend
-
       - name: Set up QEMU
         uses: docker/setup-qemu-action@v2
 
@@ -43,7 +37,7 @@ jobs:
       - name: Build and push
         uses: docker/build-push-action@v2
         with:
-          context: pleroma/
+          context: soapbox/
           platforms: linux/amd64,linux/arm64
           push: true
           tags: |

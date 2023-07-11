@@ -1,8 +1,0 @@
-
-USER root
-RUN apk add --no-cache unzip
-USER pleroma
-RUN set -ex; \
-    wget "https://gitlab.com/soapbox-pub/soapbox/-/jobs/artifacts/develop/download?job=build-production" -O /tmp/soapbox.zip; \
-    unzip /tmp/soapbox.zip -d /opt/pleroma/instance; \
-    rm /tmp/soapbox.zip
