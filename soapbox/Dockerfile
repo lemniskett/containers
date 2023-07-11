@@ -3,11 +3,11 @@ USER root
 ADD https://gitlab.com/soapbox-pub/soapbox/-/jobs/artifacts/develop/download?job=build-production /tmp/soapbox.zip
 RUN apt install nginx -y
 RUN set -ex; \
-    curl -L https://gitlab.com/soapbox-pub/soapbox/-/jobs/artifacts/develop/download?job=build-production -o /tmp/soapbox.zip; \
+    wget https://gitlab.com/soapbox-pub/soapbox/-/jobs/artifacts/develop/download?job=build-production -O /tmp/soapbox.zip; \
     apt install unzip -y; \
     unzip -o -d /opt/soapbox /tmp/soapbox.zip; \
     rm /tmp/soapbox.zip; \
-    chown -R mastodon:mastodon /opt/mastodon
+    chown -R mastodon:mastodon /opt/soapbox
 COPY ./mastodon-nginx.conf /etc/nginx/sites-enabled/default
 USER mastodon
 ENTRYPOINT ["/bin/sh"]
