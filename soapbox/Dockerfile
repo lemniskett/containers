@@ -8,6 +8,6 @@ RUN set -ex; \
     rm /tmp/soapbox.zip; \
     chown -R mastodon:mastodon /opt/soapbox
 COPY ./mastodon-nginx.conf /etc/nginx/sites-enabled/default
+COPY ./nginx.conf /etc/nginx/nginx.conf
 USER mastodon
-ENTRYPOINT ["/bin/sh"]
-CMD ["-c", "bundle exec rails db:migrate; nginx -g 'daemon off;' & bundle exec rails s -p 3000"]
+ENTRYPOINT ["/bin/sh", "/entrypoint.sh"]
