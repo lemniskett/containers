@@ -1,8 +1,8 @@
 FROM tootsuite/mastodon:latest
 USER root
-RUN apt install nginx -y
+RUN apt install nginx curl -y
 RUN set -ex; \
-    wget 'https://gitlab.com/soapbox-pub/soapbox/-/jobs/artifacts/develop/download?job=build-production' -O /tmp/soapbox.zip; \
+    curl -L 'https://gitlab.com/soapbox-pub/soapbox/-/jobs/artifacts/develop/download?job=build-production' -o /tmp/soapbox.zip; \
     apt install unzip -y; \
     unzip -o -d /opt/soapbox /tmp/soapbox.zip; \
     rm /tmp/soapbox.zip; \
