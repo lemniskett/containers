@@ -9,5 +9,6 @@ RUN set -ex; \
     chown -R mastodon:mastodon /opt/soapbox
 COPY ./mastodon-nginx.conf /etc/nginx/sites-enabled/default
 COPY ./nginx.conf /etc/nginx/nginx.conf
+COPY ./entrypoint.sh /entrypoint.sh
 USER mastodon
-ENTRYPOINT ["/bin/sh", "/entrypoint.sh"]
+ENTRYPOINT ["/entrypoint.sh"]
