@@ -3,7 +3,7 @@ USER root
 ADD https://gitlab.com/soapbox-pub/soapbox/-/jobs/artifacts/develop/download?job=build-production /tmp/soapbox.zip
 RUN apt install nginx -y
 RUN set -ex; \
-    wget https://gitlab.com/soapbox-pub/soapbox/-/jobs/artifacts/develop/download?job=build-production -O /tmp/soapbox.zip; \
+    wget 'https://gitlab.com/soapbox-pub/soapbox/-/jobs/artifacts/develop/download?job=build-production' -O /tmp/soapbox.zip; \
     apt install unzip -y; \
     unzip -o -d /opt/soapbox /tmp/soapbox.zip; \
     rm /tmp/soapbox.zip; \
