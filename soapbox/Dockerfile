@@ -6,7 +6,7 @@ RUN set -ex; \
     apt install unzip -y; \
     unzip -o -d /opt/soapbox /tmp/soapbox.zip; \
     rm /tmp/soapbox.zip; \
-    chown -R mastodon:mastodon /opt/soapbox
+    chown -R mastodon:mastodon /opt/soapbox /var/log/nginx /var/lib/nginx
 COPY ./mastodon-nginx.conf /etc/nginx/sites-enabled/default
 COPY ./nginx.conf /etc/nginx/nginx.conf
 COPY ./entrypoint.sh /entrypoint.sh
